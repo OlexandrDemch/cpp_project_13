@@ -1,0 +1,57 @@
+#include <iostream>
+
+void addition(int* arr1, int* arr2, int* result, int size) {
+    for (int i = 0; i < size; i++) {
+        result[i] = arr1[i] + arr2[i];
+    }
+}
+
+void subtraction(int* arr1, int* arr2, int* result, int size) {
+    for (int i = 0; i < size; i++) {
+        result[i] = arr1[i] - arr2[i];
+    }
+}
+
+void multiplication(int* arr1, int* arr2, int* result, int size) {
+    for (int i = 0; i < size; i++) {
+        result[i] = arr1[i] * arr2[i];
+    }
+}
+
+void performOperation(void (*operationFunc)(int*, int*, int*, int), int* arr1, int* arr2, int* result, int size) {
+    operationFunc(arr1, arr2, result, size);
+}
+
+int main() {
+    int arr1[] = { 1, 2, 3, 4, 5 };
+    int arr2[] = { 6, 7, 8, 9, 10 };
+    int size = sizeof(arr1) / sizeof(arr1[0]);
+
+    int result[size];
+
+    performOperation(addition, arr1, arr2, result, size);
+
+    std::cout << "Addition: ";
+    for (int i = 0; i < size; i++) {
+        std::cout << result[i] << " ";
+    }
+    std::cout << std::endl;
+
+    performOperation(subtraction, arr1, arr2, result, size);
+
+    std::cout << "Subtraction: ";
+    for (int i = 0; i < size; i++) {
+        std::cout << result[i] << " ";
+    }
+    std::cout << std::endl;
+
+    performOperation(multiplication, arr1, arr2, result, size);
+
+    std::cout << "Multiplication: ";
+    for (int i = 0; i < size; i++) {
+        std::cout << result[i] << " ";
+    }
+    std::cout << std::endl;
+
+    return 0;
+}
