@@ -1,0 +1,46 @@
+#include <iostream>
+
+bool isEven(int num) {
+    return num % 2 == 0;
+}
+
+bool isOdd(int num) {
+    return num % 2 != 0;
+}
+
+bool isPrime(int num) {
+    if (num <= 1) {
+        return false;
+    }
+    for (int i = 2; i * i <= num; i++) {
+        if (num % i == 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
+void filterNumbers(int* arr, int size, bool (*criteriaFunc)(int)) {
+    for (int i = 0; i < size; i++) {
+        if (criteriaFunc(arr[i])) {
+            std::cout << arr[i] << " ";
+        }
+    }
+    std::cout << std::endl;
+}
+
+int main() {
+    int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    int size = sizeof(arr) / sizeof(arr[0]);
+
+    std::cout << "Even numbers: ";
+    filterNumbers(arr, size, isEven);
+
+    std::cout << "Odd numbers: ";
+    filterNumbers(arr, size, isOdd);
+
+    std::cout << "Prime numbers: ";
+    filterNumbers(arr, size, isPrime);
+
+    return 0;
+}
