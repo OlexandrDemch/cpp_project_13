@@ -1,0 +1,22 @@
+#include <iostream>
+
+void multiplicationTable(int number) {
+    for (int i = 1; i <= 10; i++) {
+        std::cout << number << " x " << i << " = " << number * i << std::endl;
+    }
+}
+
+void computeTable(void (*multiplyFunc)(int), int number) {
+    multiplyFunc(number);
+}
+
+int main() {
+    int number;
+
+    std::cout << "Enter a number: ";
+    std::cin >> number;
+
+    computeTable(multiplicationTable, number);
+
+    return 0;
+}
